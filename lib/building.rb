@@ -8,4 +8,8 @@ class Building
   def add_unit(unit)
     @units << unit
   end
+
+  def renters
+    @units.map {|unit| unit.renter}.compact
+  end
 end
