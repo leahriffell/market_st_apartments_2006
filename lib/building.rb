@@ -29,4 +29,19 @@ class Building
 
     highest_rent_unit.renter
   end
+
+  def units_by_number_of_bedrooms
+    bedroom_counts = @units.collect { |unit| unit.bedrooms }.uniq.sort.reverse
+
+    result = Hash.new { |hash, bedroom_count| hash[bedroom_count] = [] }
+    
+    bedroom_counts.each do |count|
+      @units.each do |unit|
+        if unit.bedrooms == count
+          result[count] << unit.number
+        end
+      end
+    end
+    result
+  end
 end
