@@ -67,6 +67,6 @@ class BuildingTest < MiniTest::Test
 
     assert_equal [], building.rented_units
     unit2.add_renter(renter1)
-    assert_instance_of [unit2], building.rented_units
+    assert_equal [unit2], building.rented_units
   end
 end

@@ -17,4 +17,8 @@ class Building
    rents = @units.map {|unit| unit.monthly_rent}
    rents.sum.to_f / rents.length
   end
+
+  def rented_units
+    @units.select {|unit| unit.renter != nil}
+  end
 end
