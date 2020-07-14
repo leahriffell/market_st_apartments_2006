@@ -21,4 +21,12 @@ class Building
   def rented_units
     @units.select {|unit| unit.renter != nil}
   end
+
+  def renter_with_highest_rent
+    occupied_rents = rented_units.map {|unit| unit.monthly_rent}
+
+    highest_rent_unit = @units.find {|unit| unit.monthly_rent == occupied_rents.max}
+
+    highest_rent_unit.renter
+  end
 end
