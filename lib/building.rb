@@ -34,7 +34,7 @@ class Building
     bedroom_counts = @units.collect { |unit| unit.bedrooms }.uniq.sort.reverse
 
     result = Hash.new { |hash, bedroom_count| hash[bedroom_count] = [] }
-    
+
     bedroom_counts.each do |count|
       @units.each do |unit|
         if unit.bedrooms == count
@@ -43,5 +43,15 @@ class Building
       end
     end
     result
+  end
+
+  def annual_breakdown
+    renters = renters.map {|renter| renter.name}
+    annual_rents = rented_units.map {|unit| unit.monthly_rent * 12}
+    breakdown = {}
+
+    renters.zip(annual_rents) { |renter, annual_rent| breakdown[renter] = annual_rent }
+    
+    breakdown
   end
 end
